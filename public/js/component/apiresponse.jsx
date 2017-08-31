@@ -19,11 +19,11 @@ export default class Test extends React.Component {
           if(result.status==200){  
             this.setState({statusCode: result.status});
             var headers=[]
-            result.headers.forEach(function(val, key) { headers.push(key + ' -> ' + val) });
+            result.headers.forEach(function(val, key) { headers.push(key + ' => ' + val) });
             this.setState({items: {"imageurl":URL,"headers":headers}});
             }else{
             this.setState({statusCode: result.status});
-            result.headers.forEach(function(val, key) { console.log(key + ' -> ' + val); });
+            result.headers.forEach(function(val, key) { console.log(key + ' => ' + val); });
             }
           }) 
     }
@@ -35,11 +35,11 @@ export default class Test extends React.Component {
           if(result.status==200){ 
             this.setState({statusCode: result.status});
             var headers=[]
-            result.headers.forEach(function(val, key) { headers.push(key + ' -> ' + val) });
+            result.headers.forEach(function(val, key) { headers.push(key + ' => ' + val) });
             this.setState({items: {"imageurl":URL,"headers":headers}});          
              }else{
              this.setState({statusCode: result.status});
-              result.headers.forEach(function(val, key) { console.log(key + ' -> ' + val); });
+              result.headers.forEach(function(val, key) { console.log(key + ' => ' + val); });
             }
           })  
     }
