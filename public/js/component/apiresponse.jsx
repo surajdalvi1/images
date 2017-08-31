@@ -38,6 +38,10 @@ export default class Test extends React.Component {
             result.headers.forEach(function(val, key) { headers.push(key + ' => ' + val) });
             this.setState({items: {"imageurl":URL,"headers":headers}});          
              }else{
+              console.log("error1:::",result.body)
+              console.log("error:::",result.text())
+              console.log("error:::",result.toString)
+             // console.log("json:::",result.json())
              this.setState({statusCode: result.status});
               result.headers.forEach(function(val, key) { console.log(key + ' => ' + val); });
             }
