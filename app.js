@@ -2,6 +2,7 @@
  * Module dependencies.
  */
 var express = require('express'),
+    basicAuth = require('basic-auth-connect'),
     nunjucks = require('nunjucks'),
     bodyParser = require('body-parser'),
     logger = require('morgan'),
@@ -9,6 +10,7 @@ var express = require('express'),
     Contentstack = require('contentstack');
 
 var app = express();
+app.use(basicAuth('built', 'built1234'));
 var env = process.env.NODE_ENV || "dev",
     _dirname = (process.env.SITE_PATH) ? path.resolve(process.env.SITE_PATH) : process.cwd(),
     _env;
