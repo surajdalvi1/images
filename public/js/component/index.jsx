@@ -25,6 +25,7 @@ class APIResources extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
+        console.log("HIIIIIIIIIIIIIIIIIIIIII")
         mainTitle = nextProps.mainTitle
         subTitle = nextProps.subTitle
         entryTitle = nextProps.entryTitle
@@ -42,12 +43,28 @@ class APIResources extends React.Component {
 
                     var len = this.state.urlParams.length;
                     if (len > 0) {
+                        var urlParameters="";
+                        var updatedURL=url_string.split("?");
                         this.state.urlParams.map((item, index)=> {
                             var parameter_key = item.key
-                            var key = "{" + parameter_key + "}"
+                            //added code
+                            var urlParam=updatedURL[1];
+                            urlParam=urlParam.split("&");
+                            for(var k=0;k<urlParam.length;k++){
+                                var paramKey=urlParam[k].split("=");
+                                if(paramKey[0]==parameter_key){
+                                    urlParameters=urlParameters+paramKey[0]+"="+item.value+"&"
+                                }
+                            }
+                            //old code
+                          /*  var key = "{" + parameter_key + "}"
                             url_string = url_string.replace(key, item.value)
-                            this.setState({url: url_string})
+                            this.setState({url: url_string})*/
                         })
+                        var finalURL=updatedURL[0]+"?"+urlParameters;
+                        var index_position=finalURL.lastIndexOf("&");
+                        finalURL=finalURL.substring(0,index_position)
+                        this.setState({url: finalURL})
                     } else {
                         this.setState({url: url_string})
                     }
@@ -61,6 +78,7 @@ class APIResources extends React.Component {
     }
 
     componentDidMount() {
+        console.log("byeeeeeeeeeee")
         mainTitle = this.props.mainTitle
         subTitle = this.props.subTitle
         entryTitle = this.props.entryTitle
@@ -82,12 +100,28 @@ class APIResources extends React.Component {
                     this.setState({urlParams: items.entry.url_parameters})
                     var len = this.state.urlParams.length;
                     if (len > 0) {
+                        var urlParameters="";
+                        var updatedURL=url_string.split("?");
                         this.state.urlParams.map((item, index)=> {
                             var parameter_key = item.key
-                            var key = "{" + parameter_key + "}"
+                            //added code
+                            var urlParam=updatedURL[1];
+                            urlParam=urlParam.split("&");
+                            for(var k=0;k<urlParam.length;k++){
+                                var paramKey=urlParam[k].split("=");
+                                if(paramKey[0]==parameter_key){
+                                    urlParameters=urlParameters+paramKey[0]+"="+item.value+"&"
+                                }
+                            }
+                            //old code
+                  /*          var key = "{" + parameter_key + "}"
                             url_string = url_string.replace(key, item.value)
-                            this.setState({url: url_string})
+                            //this.setState({url: url_string})*/
                         })
+                        var finalURL=updatedURL[0]+"?"+urlParameters;
+                        var index_position=finalURL.lastIndexOf("&");
+                        finalURL=finalURL.substring(0,index_position)
+                        this.setState({url: finalURL})
                     } else {
                         this.setState({url: url_string})
                     }
@@ -148,7 +182,6 @@ class APIResources extends React.Component {
 
     setParamsInURLByName(name, value) {
         var sURL = this.state.url;
-
         var old_url = this.state.api_endpoint;
         var arrParams = sURL.split("?");
         var main = old_url.split("?")
@@ -167,7 +200,7 @@ class APIResources extends React.Component {
             var sParam = arrURLParams[i].split("=");
             if (sParam[0] == name) {
                 var old_value = sParam[1];
-                sURL = sURL.replace(name + '=' + old_value, name + '=' + value)
+                sURL = sURL.replace(sParam[0]  + '=' + old_value, sParam[0]  + '=' + value)
                 this.setState({url: sURL})
 
             }
