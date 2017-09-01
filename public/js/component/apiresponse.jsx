@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import ReactJson from 'react-json-view'
+import axios from 'axios'
 export default class Test extends React.Component {
     constructor() {
         super();
@@ -14,43 +15,42 @@ export default class Test extends React.Component {
         this.setState({statusCode: ''});
         const URL = nextProps.url;
 
-         fetch(URL)  
-          .then(result => {  
-          if(result.status==200){  
-            this.setState({statusCode: result.status});
-            var headers=[]
-            result.headers.forEach(function(val, key) { headers.push(key + ' => ' + val) });
-            this.setState({items: {"imageurl":URL,"headers":headers}});
-            }else{
-            this.setState({statusCode: result.status});
-            result.headers.forEach(function(val, key) { console.log(key + ' => ' + val); });
-            }
-          }) 
+        axios.get(URL)
+            .then(response => {
+                this.setState({statusCode: response.status});
+                this.setState({items: {"imageurl":URL}});
+            })
+            .catch((error) => {
+                this.setState({statusCode: error.response.status});
+                this.setState({items: {"errormessage":error.response.data}});
+            });
     }
 
     componentDidMount() {
         const URL = this.props.url;
-        fetch(URL)  
-          .then(result => { 
-          if(result.status==200){ 
-            this.setState({statusCode: result.status});
-            var headers=[]
-            result.headers.forEach(function(val, key) { headers.push(key + ' => ' + val) });
-            this.setState({items: {"imageurl":URL,"headers":headers}});          
-             }else{
-              console.log("error1:::",result.blob().toString)
-              console.log("error:::",result.toString())
-              console.log("error:::",result.toString)
-             // console.log("json:::",result.json())
-             this.setState({statusCode: result.status});
-              result.headers.forEach(function(val, key) { console.log(key + ' => ' + val); });
-            }
-          })  
+
+        axios.get(URL)
+            .then(response => {
+                this.setState({statusCode: response.status});
+                this.setState({items: {"imageurl":URL}});
+            })
+            .catch((error) => {
+                this.setState({statusCode: error.response.status});
+                this.setState({items: {"errormessage":error.response.data}});
+            });
     }
 
     render() {
         this.props.status(this.state.statusCode)
-         var itemData =<div> <img src={this.state.items.imageurl} /><br/><b>{this.state.items.headers}</b> </div>  
+        var itemData;
+        if(this.state.items){
+            if(this.state.items.imageurl){
+                itemData=<img src={this.state.items.imageurl} />
+            }else{
+                itemData=this.state.items.errormessage
+            }
+        }
+        // var itemData = <img src={this.state.items.imageurl} />
         return(
             <div>
                 {this.state.items ? itemData : null}

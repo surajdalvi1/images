@@ -292,7 +292,7 @@ class APIResources extends React.Component {
                             </div>
                             <div id="scroll_sec">
                                 <div className="responseBox">
-                                     {this.state.responseBody? this.state.responseBody : <img src={'https://dev-images.contentstack.io/v3/assets/blt292488fcba60b587/blt9d40e0935eeef4fd/59a4eda96080ca11663b7c5f/download'} />}
+                                     {this.state.responseBody? this.state.responseBody : <img src={'https://dev-images.contentstack.io/v3/assets/blt178f5ddafe90ae36/blt655974c6de1bd78c/59a8edb86080ca11663b7c8f/download'} />}
                                     
                                 </div>
                             </div>
