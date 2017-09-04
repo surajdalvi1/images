@@ -3,7 +3,7 @@ import Api_reponse from './apiresponse.jsx'
 import config from '../../../config/default.js'
 import ReactJson from 'react-json-view'
 import $ from 'jquery'
-var mainTitle, subTitle, entryTitle,divider,HostName;
+var mainTitle, subTitle, entryTitle,divider,HostName,DummyImageURL;
 class APIResources extends React.Component {
     constructor(props) {
         super(props);
@@ -229,6 +229,10 @@ class APIResources extends React.Component {
                     HostName = param.value
                     return (HostName)
                 }
+                if(param.title == "ImageURL"){
+                    DummyImageURL = param.value
+                    return (DummyImageURL)
+                }
             })
         }
         if (itemsData.url_parameters) {
@@ -325,7 +329,7 @@ class APIResources extends React.Component {
                             </div>
                             <div id="scroll_sec">
                                 <div className="responseBox">
-                                     {this.state.responseBody? this.state.responseBody : <img src={'https://dev-images.contentstack.io/v3/assets/blt178f5ddafe90ae36/blt655974c6de1bd78c/59a8edb86080ca11663b7c8f/download'} />}
+                                     {this.state.responseBody? this.state.responseBody : <img src={DummyImageURL} />}
                                     
                                 </div>
                             </div>
