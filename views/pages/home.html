@@ -12,6 +12,7 @@
                                 <ul class="nav nav-stacked" id="s-menu">
                                     <li><a href="#{{entry.introduction.heading | replace(' ', '-') | lower}}">{{entry.introduction.heading}}</a>
                                         <ul>
+                                            {% if entry.introduction.order_of_sub_items.length > 1 %}
                                             {% for introduction in entry.introduction.order_of_sub_items %}
                                             <li><a href="#{{introduction.title | replace(' ', '-') | lower}}">{{introduction.title}}</a>
                                                 {% if introduction.sub_items.length %}
@@ -23,6 +24,7 @@
                                                 {% endif %}
                                             </li>
                                             {% endfor %}
+                                            {% endif %}
                                         </ul>
                                     </li>
                                     <li><a href="#{{entry.reference.heading  | replace(' ', '-') | lower }}">{{entry.reference.heading}}</a>
@@ -31,10 +33,12 @@
                                             <li><a href="#{{reference.title | replace(' ', '-') | lower }}">{{reference.title}}</a>
                                                 {% if reference.api_details %}
                                                 <ul>
+                                                    {% if reference.api_details.length > 1 %}
                                                     {% for sub_item in reference.api_details %}
                                                     {% set i = loop.index %}
                                                     <li class="{% if i > 3 %}check-visibility{% endif %}"><a href="#{{sub_item.title | replace(' ', '-') | lower }}">{{sub_item.title}}</a></li>
                                                     {% endfor %}
+                                                    {% endif %}
                                                 </ul>
                                                 {% endif %}
                                             </li>
@@ -60,7 +64,7 @@
                                         <h2 id="{{entry.introduction.heading | replace(' ', '-') | lower}}">{{entry.introduction.heading}}</h2>
                                         {% for introduction in entry.introduction.order_of_sub_items %}
                                         <div class="article">
-                                            <h3 id="{{introduction.title | replace(' ', '-') | lower}}">{{introduction.title}}</h3>
+                                            <!--<h3 id="{{introduction.title | replace(' ', '-') | lower}}">{{introduction.title}}</h3>-->
                                             <p>{{introduction.description}}</p>
                                             {% if introduction.sub_items %}
                                             {% for sub_item in introduction.sub_items %}
