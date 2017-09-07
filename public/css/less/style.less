@@ -86,7 +86,6 @@ table{
 }
 .header {
   padding: 0 48px 0;
-  //background: rgba(228,73,82, 1);
   background: @white-bg;
   border-bottom: 1px solid @solitude-border;
   overflow: hidden;
@@ -97,18 +96,19 @@ table{
   z-index: 99;
   box-shadow: 0 4px 5px 0 rgba(180,187,193,0.25);
   .logo {
-    //width: 255px;
     display: inline-block;
     position: relative;
-    top: 2px;
-    padding: 11px 0 10px;
+    top: 9px;
+    padding: 2px 0;
     img{
       width: 100%;
-      max-width: 255px;
+      max-width: 180px;
       height: auto;
     }
     a{
       text-decoration: none;
+      display: block;
+      line-height: 0;
     }
     span {
       font-weight: 100;
@@ -900,48 +900,46 @@ table{
       width: 150px;
       margin: 15px auto 0;
     }
-  }
-  .apps{
-    ~ .go-top{
-      &.show-arr{
-        display: none;
+    .go-top{
+      display: block;
+      position: fixed;
+      bottom: -45px;
+      right: 285px;
+      -webkit-transition: all 1s ease;
+      -moz-transition: all 1s ease;
+      -o-transition: all 1s ease;
+      transition: all 1s ease;
+      cursor: pointer;
+      z-index: 99;
+      &.show-arr {
+        bottom: 50px;
+      }
+      &.top-arrow{
+        bottom: 20%;
+        transition: all 0s ease !important;
+      }
+      img{
+        width: 35px;
+        height: 35px;
       }
     }
   }
-  .go-top{
-    display: block;
-    position: fixed;
-    bottom: -45px;
-    right: 285px;
-    -webkit-transition: all 1s ease;
-    -moz-transition: all 1s ease;
-    -o-transition: all 1s ease;
-    transition: all 1s ease;
-    cursor: pointer;
-    z-index: 9;
-    &.show-arr {
-      display: block;
-      bottom: 29px;
-    }
-    img{
-      display: block;
-      width: 35px;
-      height: 35px;
-    }
-  }
+  //.apps{
+  //  ~ .go-top{
+  //    &.show-arr{
+  //      display: none;
+  //    }
+  //  }
+  //}
   .scroll-col{
     background: @white-bg;
-    //background: @alice-blue-bg;
     height: calc(~"100vh - 190px");
     //height: 80%;
     width: 100%;
     max-width: 264px;
     //float: right;
     margin-left: 0px !important;
-    //border-left: 2px solid @solitude-border;
     right: 0;
-    //top: 122px;
-    //font-family: @heading-font;
     position: fixed;
     z-index: 1;
     margin-top: 108px;
@@ -1098,8 +1096,43 @@ table{
     }
   }
 }
+footer{
+  color:#333;
+  background: #f5f6f7;
+  padding: 30px 0;
+  position: relative;
+  z-index: 91;
+  .container{
+    max-width: 1124px;
+  }
+  &:after{
+    height: 125px;
+  }
+  p{
+    font-size: 15px;
+  }
+  h4{
+    margin-bottom: 5px;
+  }
+  a{
+    color: #474f54;
+    font-weight: 600;
+    &:hover, &:focus{
+      text-decoration: underline;
+      color: inherit;
+    }
+  }
+  .footer-bx{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: left;
+    &+.footer-bx{
+      border-left: 1px solid #ddd;
+    }
+  }
+}
 /******** Marketplace css ********/
-.apps{
+/*.apps{
   h4{
     text-align: center;
     margin-bottom: 5px;
@@ -1421,7 +1454,7 @@ table{
       }
     }
   }
-}
+}*/
 /***** End Marketplace css ******/
 .image-overlay{
   position: fixed;
@@ -1462,14 +1495,14 @@ table{
     }
   }
 }
-footer{
-  background: @azure-bg;
-  padding: 30px 0;
-  text-align: center;
-  color: @white;
-  position: relative;
-  z-index: 91;
-}
+//footer{
+//  background: @azure-bg;
+//  padding: 30px 0;
+//  text-align: center;
+//  color: @white;
+//  position: relative;
+//  z-index: 91;
+//}
 
 .affix-top,.affix{
   position: static;

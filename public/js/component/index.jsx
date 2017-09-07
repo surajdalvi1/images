@@ -162,6 +162,18 @@ class APIResources extends React.Component {
             $(this).parents('.responseHead').siblings('#scroll_sec').find('.prettData').show().siblings('.rawData').hide();
         });
 
+        $("#btnClass").click(function() {
+            //$('li a.current').removeClass('current');
+            //$(this).addClass('current');
+            $(".parametersList").slideToggle("slow");
+        });
+
+        $('.showParamdtls').click(function () {
+            $('.parametersList').slideToggle('2000', function () {
+            });
+            $('.showParamdtls').toggleClass('hideList');
+        });
+
     }
 
     getData(value) {
@@ -294,8 +306,9 @@ class APIResources extends React.Component {
                     </div>
 
                     <div className="parametersColumTable  col-md-12 ">
-                        <h2 className="prameterTitle font ">Parameters</h2>
+                        <div className="showParamdtls"><span></span></div>
                         <ul className="parametersList">
+                            <h2 className="prameterTitle font ">Parameters</h2>
                             {parameters}
                         </ul>
                     </div>
