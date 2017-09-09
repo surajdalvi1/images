@@ -18,7 +18,7 @@ export default class Test extends React.Component {
         axios.get(URL)
             .then(response => {
                 this.setState({statusCode: response.status});
-                this.setState({items: {"imageurl":URL}});
+                this.setState({items: {"imageurl":URL,"contentlength":response.headers["content-length"],"contenttype":response.headers["content-type"]}});
             })
             .catch((error) => {
                 this.setState({statusCode: error.response.status});
@@ -32,7 +32,7 @@ export default class Test extends React.Component {
         axios.get(URL)
             .then(response => {
                 this.setState({statusCode: response.status});
-                this.setState({items: {"imageurl":URL}});
+                this.setState({items: {"imageurl":URL,"contentlength":response.headers["content-length"],"contenttype":response.headers["content-type"]}});
             })
             .catch((error) => {
                 this.setState({statusCode: error.response.status});
@@ -45,7 +45,7 @@ export default class Test extends React.Component {
         var itemData;
         if(this.state.items){
             if(this.state.items.imageurl){
-                itemData=<img src={this.state.items.imageurl} />
+                itemData=<div><img src={this.state.items.imageurl}/><br/>content-length:{this.state.items.contentlength}<br/>content-type:{this.state.items.contenttype}</div>
             }else{
                 itemData=this.state.items.errormessage
             }

@@ -3,7 +3,7 @@ import Api_reponse from './apiresponse.jsx'
 import config from '../../../config/default.js'
 import ReactJson from 'react-json-view'
 import $ from 'jquery'
-var mainTitle, subTitle, entryTitle,divider,HostName,DummyImageURL;
+var mainTitle,sourceimage, subTitle, entryTitle,divider,HostName,DummyImageURL;
 class APIResources extends React.Component {
     constructor(props) {
         super(props);
@@ -25,13 +25,15 @@ class APIResources extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log("HIIIIIIIIIIIIIIIIIIIIII")
         mainTitle = nextProps.mainTitle
         subTitle = nextProps.subTitle
+        sourceimage = nextProps.sourceimage
+        console.log("HIIIIIIIIIIIIIIIIIIIIII",sourceimage)
         entryTitle = nextProps.entryTitle
         divider = nextProps.divider
         this.setState({urlParams:[]})
         this.setState({responseBody:""})
+        this.setState({statusCode:""})
         this.setState({isLoading:false})
         fetch(config.host + '/content_types/console/entries/' + nextProps.entry_uid + '?api_key='+config.contentstack.api_key+'&access_token='+config.contentstack.access_token+'&environment='+config.contentstack.environment+'&include[]=code_snippets_for_different_languages.language&include[]=url_parameters.data_type&include[]=headers.type')
             .then(result=>result.json())
@@ -78,9 +80,10 @@ class APIResources extends React.Component {
     }
 
     componentDidMount() {
-        console.log("byeeeeeeeeeee")
         mainTitle = this.props.mainTitle
         subTitle = this.props.subTitle
+        sourceimage = this.props.sourceimage
+        console.log("byeeeeeeeeeee",sourceimage)
         entryTitle = this.props.entryTitle
         divider = this.props.divider
         // Fetch call for global parameters
@@ -342,7 +345,8 @@ class APIResources extends React.Component {
                             </div>
                             <div id="scroll_sec">
                                 <div className="responseBox">
-                                     {this.state.responseBody? this.state.responseBody : <img src={DummyImageURL} />}
+                                     {this.state.responseBody? <div>{this.state.responseBody}</div> : null }
+                                     <div><h2>Original Image</h2><br/><img src={sourceimage} /></div>
                                     
                                 </div>
                             </div>
@@ -356,6 +360,7 @@ class APIResources extends React.Component {
 function loadReactDom() {
     var mainTitle = this.getAttribute('mainTitle')
     var subTitle = this.getAttribute('subTitle')
+    var sourceimage = this.getAttribute('sourceimage')
     var entryTitle = this.getAttribute('entryTitle')
     var entryUid = this.getAttribute('entryUid')
     var divider ='/';
@@ -370,7 +375,7 @@ function loadReactDom() {
         right: 0
     },function() {
         ReactDOM.render(
-            <APIResources mainTitle={mainTitle} subTitle={subTitle} entryTitle={entryTitle} entry_uid={entryUid}
+            <APIResources mainTitle={mainTitle} subTitle={subTitle} sourceimage={sourceimage} entryTitle={entryTitle} entry_uid={entryUid}
                           divider={divider}/>,
             document.getElementById('documentationColum')
         );
