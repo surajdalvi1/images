@@ -188,8 +188,8 @@ class APIResources extends React.Component {
     getData(value) {
         if (value) {
             this.setState({isLoading: false})
-            this.setState({resposneText: value[0]})
-            this.setState({statusCode: value[1]})
+           // this.setState({resposneText: value[0]})
+            this.setState({statusCode: value})
         }
     }
     onClick() {
@@ -348,7 +348,7 @@ class APIResources extends React.Component {
                         <div className="responseColm">
                             <div id="scroll_sec">
                                 <div className="responseBox">
-                                    {this.state.responseBody? <div><div className='responseHead'><h2 className='prameterTitle'>{this.state.resposneText} <span className=''> {this.state.statusCode} </span></h2></div>{this.state.responseBody}</div> : null }
+                                    {this.state.responseBody? <div><div className='responseHead'><h2 className='prameterTitle'>Resposne <span className=''> {this.state.statusCode} </span></h2></div>{this.state.responseBody}</div> : null }
                                     <div><h2 className='prameterTitle'>Original Image</h2><span className='responseImage'><img src={sourceimage} /></span><div className='responseImageHeader'><h2 className='prameterTitle'>Headers</h2><ul><li>content-length:{contentlength}</li><li>content-type:{contenttype}</li></ul></div></div>
 
                                 </div>

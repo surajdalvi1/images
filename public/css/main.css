@@ -2430,6 +2430,20 @@ body .cont-wrapper #scroll_sec .responseBox pre {
   padding: 0;
   margin: 0;
 }
+body .cont-wrapper #scroll_sec .responseBox .prameterTitle {
+  margin: 36px 0 10px 0;
+}
+body .cont-wrapper #scroll_sec .responseBox .responseImageHeader .prameterTitle {
+  margin: 10px 0 6px 0 !important;
+  font-size: 16px;
+  padding-bottom: 0px;
+}
+body .cont-wrapper #scroll_sec .responseBox .responseImageHeader ul {
+  margin-bottom: 20px;
+}
+body .cont-wrapper #scroll_sec .responseBox .errorMsg {
+  color: #c7254e;
+}
 body .cont-wrapper #scroll_sec#scroll_sec::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   border-radius: 10px;

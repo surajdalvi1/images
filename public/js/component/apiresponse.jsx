@@ -56,8 +56,8 @@ export default class Test extends React.Component {
         /*var data=[];
         data.push(this.state.statusCode)
         data.push(this.state.resposneText)*/
-        this.props.status(this.state.alldata)
-        //this.props.status(this.state.resposneText)
+       // this.props.status(this.state.alldata)
+        this.props.status(this.state.statusCode)
         var itemData;
         if(this.state.items){
             if(this.state.items.imageurl){
