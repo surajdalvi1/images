@@ -1750,6 +1750,9 @@ body .cont-wrapper .content-slide {
   margin-left: -25%;
   transition: margin-left 0.5s;
 }
+body .cont-wrapper .content-slide .content-area {
+  width: 60%;
+}
 body .cont-wrapper .content-slide .content-area .go-top {
   margin-right: 25%;
   -webkit-transition: all 0.5s ease;
@@ -1774,8 +1777,8 @@ body .cont-wrapper .content-area.scroll-div::-webkit-scrollbar-thumb {
   background-color: #e3e9ef;
 }
 body .cont-wrapper .content-area .article h4 {
-  margin-bottom: 20px;
-  margin-top: 60px;
+  margin-top: 40px;
+  margin-bottom: 35px;
 }
 body .cont-wrapper .content-area .actionName {
   background: #f7f9fb;
@@ -1806,6 +1809,8 @@ body .cont-wrapper .content-area code {
 body .cont-wrapper .content-area h3 {
   position: relative;
   cursor: pointer;
+  border-bottom: 1px solid #eaecef;
+  padding-bottom: 8px;
 }
 body .cont-wrapper .content-area h3:before {
   content: '';
@@ -1821,18 +1826,22 @@ body .cont-wrapper .content-area h3:before {
 body .cont-wrapper .content-area h3:hover:before {
   display: block;
 }
+body .cont-wrapper .content-area h4 {
+  margin-top: 40px;
+  margin-bottom: 35px;
+}
 body .cont-wrapper .sideColumExampleConsole {
   position: fixed;
-  width: 650px;
+  width: 900px;
   height: 95vh;
   background-color: #f7f9fb;
-  top: 55px;
+  top: 54px;
   box-shadow: 1px 0px 7px #333;
   z-index: 8;
   overflow-y: scroll;
   padding: 0 30px 50px;
   display: block;
-  right: -700px;
+  right: -900px;
 }
 body .cont-wrapper .sideColumExampleConsole.exmplConsole {
   height: 100vh;
@@ -1898,7 +1907,7 @@ body .cont-wrapper .sideColumExampleConsole #documentationColum .docColum .bread
   top: 55px;
   position: relative;
   z-index: 101;
-  width: 643px;
+  width: 895px;
   background-color: #f7f9fb;
   margin-left: -30px;
   padding-left: 40px;
@@ -2447,6 +2456,9 @@ body .cont-wrapper #scroll_sec#scroll_sec::-webkit-scrollbar-thumb {
 }
 .left-sidebar #s-menu li ul ul {
   margin-top: 2px;
+}
+.left-sidebar #s-menu li li {
+  padding: 8px 0 4px 30px;
 }
 .left-sidebar #s-menu li li li {
   padding: 5px 0 4px 19px;

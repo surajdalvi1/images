@@ -3,7 +3,7 @@ import Api_reponse from './apiresponse.jsx'
 import config from '../../../config/default.js'
 import ReactJson from 'react-json-view'
 import $ from 'jquery'
-var mainTitle,sourceimage, subTitle, entryTitle,divider,HostName,DummyImageURL;
+var mainTitle,sourceimage,contentlength,contenttype, subTitle, entryTitle,divider,HostName,DummyImageURL;
 class APIResources extends React.Component {
     constructor(props) {
         super(props);
@@ -14,6 +14,7 @@ class APIResources extends React.Component {
             urlParams: [],
             globalParams: [],
             statusCode: "",
+            resposneText: "",
             responseBody: "",
             isLoading:false,
             rawData:''
@@ -28,12 +29,15 @@ class APIResources extends React.Component {
         mainTitle = nextProps.mainTitle
         subTitle = nextProps.subTitle
         sourceimage = nextProps.sourceimage
+        contentlength = nextProps.contentlength
+        contenttype = nextProps.contenttype
         console.log("HIIIIIIIIIIIIIIIIIIIIII",sourceimage)
         entryTitle = nextProps.entryTitle
         divider = nextProps.divider
         this.setState({urlParams:[]})
         this.setState({responseBody:""})
         this.setState({statusCode:""})
+        this.setState({resposneText:""})
         this.setState({isLoading:false})
         fetch(config.host + '/content_types/console/entries/' + nextProps.entry_uid + '?api_key='+config.contentstack.api_key+'&access_token='+config.contentstack.access_token+'&environment='+config.contentstack.environment+'&include[]=code_snippets_for_different_languages.language&include[]=url_parameters.data_type&include[]=headers.type')
             .then(result=>result.json())
@@ -59,9 +63,9 @@ class APIResources extends React.Component {
                                 }
                             }
                             //old code
-                          /*  var key = "{" + parameter_key + "}"
-                            url_string = url_string.replace(key, item.value)
-                            this.setState({url: url_string})*/
+                            /*  var key = "{" + parameter_key + "}"
+                             url_string = url_string.replace(key, item.value)
+                             this.setState({url: url_string})*/
                         })
                         var finalURL=updatedURL[0]+"?"+urlParameters;
                         var index_position=finalURL.lastIndexOf("&");
@@ -83,6 +87,8 @@ class APIResources extends React.Component {
         mainTitle = this.props.mainTitle
         subTitle = this.props.subTitle
         sourceimage = this.props.sourceimage
+        contentlength = this.props.contentlength
+        contenttype = this.props.contenttype
         console.log("byeeeeeeeeeee",sourceimage)
         entryTitle = this.props.entryTitle
         divider = this.props.divider
@@ -117,9 +123,9 @@ class APIResources extends React.Component {
                                 }
                             }
                             //old code
-                  /*          var key = "{" + parameter_key + "}"
-                            url_string = url_string.replace(key, item.value)
-                            //this.setState({url: url_string})*/
+                            /*          var key = "{" + parameter_key + "}"
+                             url_string = url_string.replace(key, item.value)
+                             //this.setState({url: url_string})*/
                         })
                         var finalURL=updatedURL[0]+"?"+urlParameters;
                         var index_position=finalURL.lastIndexOf("&");
@@ -138,7 +144,7 @@ class APIResources extends React.Component {
             )
         $(".closeBtn , .slide-arrow").on("click",function(){
             $('.sideColumExampleConsole').animate({
-                right: -700
+                right: -900
             });
             $("#main").removeClass("content-slide");
             $(".slide-arrow").removeClass("show");
@@ -182,11 +188,13 @@ class APIResources extends React.Component {
     getData(value) {
         if (value) {
             this.setState({isLoading: false})
-            this.setState({statusCode: value})
+            this.setState({resposneText: value[0]})
+            this.setState({statusCode: value[1]})
         }
     }
     onClick() {
         this.setState({isLoading: true});
+        this.setState({resposneText: ''});
         this.setState({statusCode: ''});
         this.setState({rawData: ''});
         var url = HostName + this.state.url;
@@ -338,16 +346,11 @@ class APIResources extends React.Component {
                         </div>
 
                         <div className="responseColm">
-                            <div className="responseHead">
-                                <h2 className="prameterTitle">Response <span className=""> {this.state.statusCode} </span></h2>
-                                
-                                
-                            </div>
                             <div id="scroll_sec">
                                 <div className="responseBox">
-                                     {this.state.responseBody? <div>{this.state.responseBody}</div> : null }
-                                     <div><h2>Original Image</h2><br/><img src={sourceimage} /></div>
-                                    
+                                    {this.state.responseBody? <div><div className='responseHead'><h2 className='prameterTitle'>{this.state.resposneText} <span className=''> {this.state.statusCode} </span></h2></div>{this.state.responseBody}</div> : null }
+                                    <div><h2 className='prameterTitle'>Original Image</h2><span className='responseImage'><img src={sourceimage} /></span><div className='responseImageHeader'><h2 className='prameterTitle'>Headers</h2><ul><li>content-length:{contentlength}</li><li>content-type:{contenttype}</li></ul></div></div>
+
                                 </div>
                             </div>
                         </div>
@@ -361,6 +364,8 @@ function loadReactDom() {
     var mainTitle = this.getAttribute('mainTitle')
     var subTitle = this.getAttribute('subTitle')
     var sourceimage = this.getAttribute('sourceimage')
+    var contentlength = this.getAttribute('contentlength')
+    var contenttype = this.getAttribute('contenttype')
     var entryTitle = this.getAttribute('entryTitle')
     var entryUid = this.getAttribute('entryUid')
     var divider ='/';
@@ -375,7 +380,7 @@ function loadReactDom() {
         right: 0
     },function() {
         ReactDOM.render(
-            <APIResources mainTitle={mainTitle} subTitle={subTitle} sourceimage={sourceimage} entryTitle={entryTitle} entry_uid={entryUid}
+            <APIResources mainTitle={mainTitle} subTitle={subTitle} sourceimage={sourceimage} contentlength={contentlength} contenttype={contenttype} entryTitle={entryTitle} entry_uid={entryUid}
                           divider={divider}/>,
             document.getElementById('documentationColum')
         );

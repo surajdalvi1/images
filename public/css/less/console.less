@@ -50,6 +50,7 @@ body{
       margin-left: -25%;
       transition: margin-left .5s;
       .content-area{
+        width: 60%;
         .go-top{
           margin-right: 25%;
           -webkit-transition: all 0.5s ease;
@@ -81,8 +82,8 @@ body{
 
       .article{
         h4{
-          margin-bottom: 20px;
-          margin-top: 60px;
+          margin-top: 40px;
+          margin-bottom: 35px;
         }
       }
       .actionName{
@@ -115,6 +116,8 @@ body{
       h3{
         position: relative;
         cursor: pointer;
+        border-bottom: 1px solid #eaecef;
+        padding-bottom: 8px;
         &:before{
           content: '';
           position: absolute;
@@ -132,20 +135,24 @@ body{
           }
         }
       }
+      h4{
+        margin-top: 40px;
+        margin-bottom: 35px;
+      }
 
     }
     .sideColumExampleConsole {
       position:fixed;
-      width:650px;
+      width:900px;
       height:95vh;
       background-color:#f7f9fb;
-      top:55px;
+      top:54px;
       box-shadow: 1px 0px 7px #333;
       z-index:8;
       overflow-y:scroll;
       padding: 0 30px 50px;
       display: block;
-      right: -700px;
+      right: -900px;
       &.exmplConsole{
         height:100vh;
       }
@@ -209,7 +216,7 @@ body{
             top:55px;
             position: relative;
             z-index:101;
-            width: 643px;
+            width: 895px;
             background-color: #f7f9fb;
             margin-left: -30px;
             padding-left: 40px;
@@ -817,6 +824,9 @@ body{
 }
 .left-sidebar #s-menu li ul ul{
   margin-top: 2px;
+}
+.left-sidebar #s-menu li li{
+  padding: 8px 0 4px 30px;
 }
 
 .left-sidebar #s-menu li li li{

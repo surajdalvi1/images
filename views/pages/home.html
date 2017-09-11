@@ -95,7 +95,7 @@
                                             {% if sub_item.api_requests_collection %}
                                             {% for api_requests_collection in sub_item.api_requests_collection %}
                                             {% for api_request in api_requests_collection.api_request %}
-                                            <a  href="#{{api_request.title | replace(' ', '-') | lower }}" class="actionName" mainTitle="{{reference.title}}" subTitle="{{sub_item.title}}" sourceimage="{{sub_item.source_image_url}}" entryTitle ="{{api_request.title}}" entryUid="{{api_request.uid}}" >{{api_request.title}}<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                            <a  href="#{{api_request.title | replace(' ', '-') | lower }}" class="actionName" mainTitle="{{reference.title}}" subTitle="{{sub_item.title}}" sourceimage="{{sub_item.source_image_url}}" contentlength="{{sub_item.source_image_heraders.content_length}}" contenttype="{{sub_item.source_image_heraders.content_type}}" entryTitle ="{{api_request.title}}" entryUid="{{api_request.uid}}" >{{api_request.title}}<i class="fa fa-angle-right" aria-hidden="true"></i></a>
                                             {% endfor %}
                                             <p>{{api_requests_collection.summary}}</p>
                                              {% endfor %}
